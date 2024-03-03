@@ -1,7 +1,7 @@
 package com.LAB.LabSystem.Controller;
 
-import com.LAB.LabSystem.Entitiy.LoginResponse;
-import com.LAB.LabSystem.Entitiy.UserLoginDTO;
+import com.LAB.LabSystem.Model.LoginResponse;
+import com.LAB.LabSystem.Model.UserLoginDTO;
 import com.LAB.LabSystem.Service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ public class LoginController {
 
 
     @PostMapping(path = "/login")
-    public ResponseEntity<?> LogingUser(@RequestBody UserLoginDTO UserLoginDTO)
+    public ResponseEntity<?>LoggingUser(@RequestBody UserLoginDTO UserLoginDTO)
     {
         LoginResponse loginResponse = registerService.LoggingUser(UserLoginDTO);
         return ResponseEntity.ok(loginResponse);

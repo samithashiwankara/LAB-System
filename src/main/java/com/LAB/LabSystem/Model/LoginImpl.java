@@ -1,10 +1,7 @@
-package com.LAB.LabSystem.Entitiy;
+package com.LAB.LabSystem.Model;
 
-import com.LAB.LabSystem.Entitiy.LoginResponse;
-import com.LAB.LabSystem.Entitiy.Register;
-import com.LAB.LabSystem.Entitiy.UserLoginDTO;
 import com.LAB.LabSystem.Repo.RegisterRepo;
-import com.LAB.LabSystem.Service.RegisterServiceInterface;
+import com.LAB.LabSystem.Repo.RegisterServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,17 +18,14 @@ public class LoginImpl implements RegisterServiceInterface {
 
     @Override
     public String addUsers(Register register) {
-        Register register1 = new Register(
-                register.getEmail(),
-                this.passwordEncoder.encode(register.getPassword())
-        );
-        Rrepo.save(register1);
-        return register1.getEmail();
+        this.passwordEncoder.encode(register.getPassword());
+        Rrepo.save(register);
+        return register.getEmail();
     }
 
-//    Register register;
+    Register register;
     @Override
-    public LoginResponse loginUser(UserLoginDTO userLoginDTO) {
+    public LoginResponse LOGIN_RESPONSE(UserLoginDTO userLoginDTO) {
         String msg = "";
         Register register2 = Rrepo.findByEmail(userLoginDTO.getEmail());
         if (register2 != null) {
@@ -54,8 +48,8 @@ public class LoginImpl implements RegisterServiceInterface {
     }
 
     @Override
-    public UserLoginDTO LoginUser(UserLoginDTO userLoginDTO) {
-        return LoginUser(userLoginDTO);
+    public UserLoginDTO LogginUser(UserLoginDTO userLoginDTO) {
+        return LogginUser(userLoginDTO);
     }
 
 

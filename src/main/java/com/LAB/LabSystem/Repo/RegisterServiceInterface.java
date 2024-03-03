@@ -1,8 +1,8 @@
-package com.LAB.LabSystem.Service;
+package com.LAB.LabSystem.Repo;
 
-import com.LAB.LabSystem.Entitiy.LoginResponse;
-import com.LAB.LabSystem.Entitiy.Register;
-import com.LAB.LabSystem.Entitiy.UserLoginDTO;
+import com.LAB.LabSystem.Model.LoginResponse;
+import com.LAB.LabSystem.Model.Register;
+import com.LAB.LabSystem.Model.UserLoginDTO;
 
 public interface RegisterServiceInterface {
 //    String addUsers(Register register);
@@ -13,5 +13,5 @@ public interface RegisterServiceInterface {
     //     Register register;
     LoginResponse LOGIN_RESPONSE(UserLoginDTO userLoginDTO);
 
-    UserLoginDTO LoginUser(UserLoginDTO userLoginDTO);
+    UserLoginDTO LogginUser(UserLoginDTO userLoginDTO);
 }

@@ -1,4 +1,4 @@
-package com.LAB.LabSystem.Entitiy;
+package com.LAB.LabSystem.Model;
 
 public class UserLoginDTO {
     private String Email;
