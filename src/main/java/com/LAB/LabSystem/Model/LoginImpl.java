@@ -6,10 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class LoginImpl implements RegisterServiceInterface {
+
     @Autowired
     private RegisterRepo Rrepo;
 
@@ -18,39 +17,30 @@ public class LoginImpl implements RegisterServiceInterface {
 
     @Override
     public String addUsers(Register register) {
-        this.passwordEncoder.encode(register.getPassword());
+        String encodedPassword = passwordEncoder.encode(register.getPassword());
+        register.setPassword(encodedPassword);
         Rrepo.save(register);
         return register.getEmail();
     }
 
-    Register register;
     @Override
     public LoginResponse LOGIN_RESPONSE(UserLoginDTO userLoginDTO) {
-        String msg = "";
-        Register register2 = Rrepo.findByEmail(userLoginDTO.getEmail());
-        if (register2 != null) {
-            String password = userLoginDTO.getPassword();
-            String encodedPassword = register2.getPassword();
-            boolean isPwdRight = passwordEncoder.matches(password, encodedPassword);
+        Register register = Rrepo.findByEmail(userLoginDTO.getEmail());
+        if (register != null) {
+            boolean isPwdRight = passwordEncoder.matches(userLoginDTO.getPassword(), register.getPassword());
             if (isPwdRight) {
-                Optional<Register> employee = Rrepo.findOneByEmailAndPassword(userLoginDTO.getEmail(), encodedPassword);
-                if (employee.isPresent()) {
-                    return new LoginResponse("Login Success", true);
-                } else {
-                    return new LoginResponse("Login Failed", false);
-                }
+                return new LoginResponse("Login Success", true);
             } else {
-                return new LoginResponse("password Not Match", false);
+                return new LoginResponse("Password Not Match", false);
             }
-        }else {
-            return new LoginResponse("Email not exits", false);
+        } else {
+            return new LoginResponse("Email not exists", false);
         }
     }
 
     @Override
     public UserLoginDTO LogginUser(UserLoginDTO userLoginDTO) {
-        return LogginUser(userLoginDTO);
+        // Implement this method if necessary
+        return userLoginDTO;
     }
-
-
 }

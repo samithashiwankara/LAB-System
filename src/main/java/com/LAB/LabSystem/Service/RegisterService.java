@@ -10,8 +10,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RegisterService {
-
+    @Autowired
     private final RegisterRepo RegisterRepo;
+
     @Autowired
     private RegisterServiceInterface registerServiceInterface;
 

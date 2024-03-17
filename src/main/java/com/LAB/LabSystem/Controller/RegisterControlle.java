@@ -14,8 +14,8 @@ public class RegisterControlle {
 
     @Autowired
     private RegisterService registerService;
-      @Autowired
-      private RegisterServiceInterface registerServiceInterface;
+    @Autowired
+    private RegisterServiceInterface registerServiceInterface;
 
     @PostMapping(value = "/save")
     private String  saveUser(@RequestBody Register register)
