@@ -15,9 +15,5 @@ public class LabSystemApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LabSystemApplication.class, args);
 	}
-//	@EventListener(ApplicationReadyEvent.class)
-//	public void sendMAil(){
-//		emailService.sendBookingConfirmationEmail("sunilhettiarachchilage990@gmail.com","Appointment details");
-//	}
 
 }
